@@ -3,7 +3,10 @@ package main
 import (
 	"fmt"
 	"encoding/json"
+	"net/http"
+	"log"
 	"io/ioutil"
+	"github.com/gorilla/mux"
 )
 
 type jsonStruct struct {
@@ -13,7 +16,7 @@ type jsonStruct struct {
 	Description string `json:",omitempty"`
 }
 
-func getJSON() string {
+func getData(w http.ResponseWriter, r *http.Request) {
 	inputJSON, err := ioutil.ReadFile("data/output.json")
 	if err != nil {
 		fmt.Println("Error opening file:\n")
@@ -24,19 +27,20 @@ func getJSON() string {
 	if errUnmarshal != nil {
 		fmt.Println("Error Unmarshalling JSON:\n")
 		fmt.Println(errUnmarshal)
-		return ""
 	}
 	
 	outputJSON, errMarshal := json.Marshal(jsonMapping)
 	if errMarshal != nil {
 		fmt.Println("Error Marshalling JSON:\n")
 		fmt.Println(errMarshal)
-		return ""
 	}
-	//fmt.Println(string(outputJSON))
-	return string(outputJSON)
+
+	w.Header().Set("Content-Type","application/json")
+	json.NewEncoder(w).Encode(string(outputJSON))
 }
 
 func main() {
-	fmt.Println(getJSON())
+	muxRouter := mux.NewRouter()	
+	muxRouter.HandleFunc("/goapi/getdata", getData).Methods("GET")
+	log.Fatal(http.ListenAndServe(":8000", muxRouter))
 }
