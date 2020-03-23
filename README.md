@@ -25,3 +25,4 @@ On Ubuntu Ubuntu 18.04.4 LTS
 # Notes
 1) Example input data conatined within data/output.json file
 2) ouput.json named like so because it actually an output file of the project - codesamples-python-scrapy-scrap-golang-site - https://github.com/giantpanda9/codesamples-python-scrapy-scrap-golang-site
+3) project kept with simple structure to allow quick overview - I know MVC pattern, but shall demonstrate this abilty in dedicated project, if you do not mind - and this is solely to demonstrate the API creation abilities
