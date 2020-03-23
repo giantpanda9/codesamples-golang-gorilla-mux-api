@@ -2,6 +2,8 @@
 Golang API application dependencies: gorilla/mux (http://github.com/gorilla/mux), git
 # Description
 Simple API on Go lang code example - made using gorilla/mux middleware framework - http://github.com/gorilla/mux
+Almost the same as https://github.com/giantpanda9/codesamples-golang-gorilla-mux-api , but contains no Marhalling,
+which makes the output JSON look more correct. Let's keep this project to demonstrate the ability to do Marshalling.
 # Purposes
 To demonstrate ability to code on Go lang and to study this great language a little more
 # Requirements
